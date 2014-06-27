@@ -29,16 +29,16 @@ class RPNCalculator
     @inputs.last
   end
   
-  def convert_string_to_num(string_num)
-  integer_num = string_num.ord 
-  new_integer_num = integer_num -48
-end
+  # def convert_string_to_num(string_num)
+  #   integer_num = string_num.ord 
+  #   new_integer_num = integer_num -48
+  # end
 
 
   def operators(string)
     string.split(' ').map do |e|
       begin
-       convert_string_to_num(e)
+       Integer(e)
       rescue
         e.to_sym
       end
@@ -51,7 +51,7 @@ end
   def evaluate(string)
     operators(string).each do |x|
       begin
-        @inputs.push(convert_string_to_num(x))
+        @inputs.push(Integer(x))
       rescue
         case x
         when :+
@@ -72,14 +72,9 @@ end
 
 
 
-# calculator = RPNCalculator.new
-# puts calculator.evaluate('2 2 +')
-
-# calculator2 = RPNCalculator.new
-# puts calculator2.evaluate("3 4 + 5 6 + *")
 
 calculator3 = RPNCalculator.new
-puts calculator3.evaluate("2 2 +")
-# puts calculator3.operators('2 2 +')
+puts calculator3.evaluate(ARGV[0])
+
 
 
