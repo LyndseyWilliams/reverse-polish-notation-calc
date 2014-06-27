@@ -4,6 +4,7 @@ class RPNCalculator
   def initialize
     @inputs = []
   end
+
   
   def plus
     @inputs.push(@inputs.pop + @inputs.pop)
@@ -46,7 +47,6 @@ class RPNCalculator
   end
 
 
-
   
   def evaluate(string)
     operators(string).each do |x|
@@ -54,6 +54,8 @@ class RPNCalculator
         @inputs.push(Integer(x))
       rescue
         case x
+        when /[a-zA-Z]/
+          raise "That's an invalid number - try again!"
         when :+
           plus
         when :-
@@ -67,14 +69,23 @@ class RPNCalculator
   end
   value 
  end
+ 
+
+
+  def check_input(string)
+    if string =~ /[+-\\*\\]/ && string.length > 3
+      evaluate(string)
+    else
+      raise "No operator"
+    end
+  end
+
 end
 
 
 
-
-
 calculator3 = RPNCalculator.new
-puts calculator3.evaluate(ARGV[0])
+puts calculator3.check_input(ARGV[0])
 
 
 
