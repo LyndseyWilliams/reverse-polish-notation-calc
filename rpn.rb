@@ -47,7 +47,6 @@ class RPNCalculator
   end
 
 
-
   
   def evaluate(string)
     operators(string).each do |x|
@@ -70,14 +69,23 @@ class RPNCalculator
   end
   value 
  end
+ 
+
+
+  def check_input(string)
+    if string =~ /[+-\\*\\]/ && string.length > 3
+      evaluate(string)
+    else
+      raise "No operator"
+    end
+  end
+
 end
 
-unless ARGV[0].length > 3 
-  raise "Too short"
-end
+
 
 calculator3 = RPNCalculator.new
-puts calculator3.evaluate(ARGV[0])
+puts calculator3.check_input(ARGV[0])
 
 
 
