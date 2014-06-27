@@ -4,6 +4,7 @@ class RPNCalculator
   def initialize
     @inputs = []
   end
+
   
   def plus
     @inputs.push(@inputs.pop + @inputs.pop)
@@ -54,6 +55,8 @@ class RPNCalculator
         @inputs.push(Integer(x))
       rescue
         case x
+        when /[a-zA-Z]/
+          raise "That's an invalid number - try again!"
         when :+
           plus
         when :-
@@ -69,9 +72,9 @@ class RPNCalculator
  end
 end
 
-
-
-
+unless ARGV[0].length > 3 
+  raise "Too short"
+end
 
 calculator3 = RPNCalculator.new
 puts calculator3.evaluate(ARGV[0])
