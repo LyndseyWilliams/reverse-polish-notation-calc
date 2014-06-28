@@ -40,9 +40,8 @@ class RPNCalculator
     end
   end
 
-
   
-  def evaluate(string)
+  def evaluate_characters(string)
     operators(string).each do |x|
       begin
         @inputs.push(Integer(x))
@@ -73,7 +72,7 @@ class RPNCalculator
   def check_input(string)
     operators = ["*", "+", "/", "-"]
     if string.length >= 3 && check_for_operators?(string) != false 
-        evaluate(string)
+        evaluate_characters(string)
     else
       raise "Insufficient Characters"
     end
@@ -84,6 +83,8 @@ end
 
 calculator3 = RPNCalculator.new
 puts calculator3.check_input(ARGV[0])
+
+
 
 # Possible atoi methods :
 
