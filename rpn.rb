@@ -40,7 +40,7 @@ class RPNCalculator
     end
   end
 
-  
+
   def evaluate_characters(string)
     operators(string).each do |x|
       begin
@@ -95,9 +95,9 @@ puts calculator3.check_input(ARGV[0])
   # end
 
 
-  # def atoi(element)
-  #   numbers = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-  #   p numbers.map { | number| numbers.include?(element)}
+  # def atoi(str)
+  # return str.to_i 
   # end
+
 
 
