@@ -1,6 +1,8 @@
 
 
 class RPNCalculator
+  
+  
   def initialize
     @inputs = []
   end
@@ -11,14 +13,12 @@ class RPNCalculator
   end
   
   def minus
-    var1= @inputs.pop
-    var2= @inputs.pop
+    var1, var2= @inputs.pop, @inputs.pop
     @inputs.push(var2-var1)
   end
   
   def divide
-    var1 = pop.to_f
-    var2 = pop.to_f
+    var1,var2 =@inputs.pop.to_f, @inputs.pop.to_f
     @inputs.push(var2/var1)
   end
   
@@ -29,12 +29,6 @@ class RPNCalculator
   def value
     @inputs.last
   end
-  
-  # def convert_string_to_num(string_num)
-  #   integer_num = string_num.ord 
-  #   new_integer_num = integer_num -48
-  # end
-
 
   def operators(string)
     string.split(' ').map do |e|
@@ -70,22 +64,39 @@ class RPNCalculator
   value 
  end
  
+  def check_for_operators?(string)
+    operators = ["*", "+", "/", "-"]
+    operators.map { |e| string.include?(e) } 
+  end
 
 
   def check_input(string)
-    if string =~ /[+-\\*\\]/ && string.length > 3
-      evaluate(string)
+    operators = ["*", "+", "/", "-"]
+    if string.length >= 3 && check_for_operators?(string) != false 
+        evaluate(string)
     else
-      raise "No operator"
+      raise "Insufficient Characters"
     end
   end
 
 end
 
 
-
 calculator3 = RPNCalculator.new
 puts calculator3.check_input(ARGV[0])
 
+# Possible atoi methods :
+
+
+  # def atoi(string_num)
+  #   integer_num = string_num.ord 
+  #   new_integer_num = integer_num -48
+  # end
+
+
+  # def atoi(element)
+  #   numbers = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+  #   p numbers.map { | number| numbers.include?(element)}
+  # end
 
 
