@@ -41,6 +41,7 @@ class RPNCalculator
   end
 
 
+
   def evaluate_characters(string)
     operators(string).each do |x|
       begin
@@ -86,18 +87,17 @@ puts calculator3.check_input(ARGV[0])
 
 
 
-# Possible atoi methods :
 
+  # atoi method: 
 
   # def atoi(string_num)
   #   integer_num = string_num.ord 
   #   new_integer_num = integer_num -48
   # end
 
-
-  # def atoi(str)
-  # return str.to_i 
-  # end
+  # When implementing this atoi method the results are skewed, ie: " 3 4 + " #=> -89.
+  # I was not able to effectively debug this within the time limit for this challenge, but I welcome the
+  # opportunity to discuss possible implementations. 
 
 
 
